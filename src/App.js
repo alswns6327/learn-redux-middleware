@@ -2,12 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 import CounterContainer from './containers/CounterContainer';
 import SampleContainer from './containers/SampleContainer';
+import SagaCounterContainer from './containers/SagaCounterContainer';
+import SagaSampleContainer from './containers/SagaSampleContainer';
 
 function App() {
   return (
     <div className="App">
       {/* <CounterContainer/> */}
-      <SampleContainer/>
+      {/* <SagaCounterContainer/> */}
+      {/* <SampleContainer/> */}
+      <SagaSampleContainer/>
     </div>
   );
 }

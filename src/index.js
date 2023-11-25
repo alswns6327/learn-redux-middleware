@@ -5,16 +5,26 @@ import App from './App';
 import { Provider } from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import reportWebVitals from './reportWebVitals';
-import rootReducer from './modules';
+import rootReducer, {rootSaga} from './modules';
 import loggerMiddleware from './lib/loggerMiddleware';
 import {createLogger} from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import {composeWithDevTools} from 'redux-devtools-extension'; //redux 개발자 도구
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const logger = createLogger();
 
-const store = createStore(rootReducer, applyMiddleware(logger, ReduxThunk));
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(
+    rootReducer, 
+    composeWithDevTools(applyMiddleware(logger, ReduxThunk, sagaMiddleware))
+  );
+
+sagaMiddleware.run(rootSaga);
 
 root.render(
   <Provider store={store}>
